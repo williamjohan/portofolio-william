@@ -27,6 +27,7 @@ const TYPED_WORDS = [
   "Flutter Specialist",
   "Clean Architecture",
   "Design Systems",
+  ".NET / ASP.NET Core",
   "Fullstack Engineer",
 ];
 
@@ -124,13 +125,25 @@ const SKILLS_CATS = [
       { name: "CI/CD",            pct: 68 },
     ],
   },
+  {
+    label: "Web / Enterprise",
+    color: "cyan",
+    icon: <FileCode2 size={16} />,
+    skills: [
+      { name: "ASP.NET Core / C#", pct: 78 },
+      { name: "EF Core & LINQ",    pct: 75 },
+      { name: "Oracle Database",   pct: 72 },
+    ],
+  },
 ];
 
 const TECH_ICONS = [
   { name: "Flutter",  icon: <Smartphone size={16} />,  color: "#0175C2" },
   { name: "Dart",     icon: <Code2 size={16} />,       color: "#0175C2" },
   { name: "Laravel",  icon: <Server size={16} />,      color: "#FF2D20" },
+  { name: ".NET/C#",  icon: <FileCode2 size={16} />,   color: "#512BD4" },
   { name: "MySQL",    icon: <Database size={16} />,    color: "#4479A1" },
+  { name: "Oracle",   icon: <Database size={16} />,    color: "#F80000" },
   { name: "GCP",      icon: <Cloud size={16} />,       color: "#4285F4" },
   { name: "Firebase", icon: <Zap size={16} />,         color: "#FFCA28" },
   { name: "Git",      icon: <GitBranch size={16} />,   color: "#F05032" },
@@ -156,6 +169,8 @@ const EXPERIENCES = [
       "Mengimplementasikan Clean Architecture & scalable Design System untuk codebase maintainability",
       "Mengembangkan Cek Reklame Mobile hingga tahap testing & persiapan distribusi multi-platform",
       "Merancang dan mengembangkan Parkir Digital Bapenda untuk digitalisasi layanan parkir",
+      "Membangun MonPD — dashboard enterprise monitoring pajak dengan integrasi CCTV (ASP.NET Core/.NET 8)",
+      "Mengembangkan SIAP — sistem back-office terpadu untuk manajemen aktivitas perpajakan daerah",
     ],
     tech: ["Flutter", "Clean Architecture", "BLoC", "REST API", "Design System"],
   },
@@ -277,6 +292,38 @@ const PROJECTS = [
     impact: "Berhasil diluncurkan ke production dengan automated QA pipeline yang mengurangi bug rate dan mempercepat siklus deployment.",
     tech: ["Laravel", "Flutter", "Robot Framework", "MySQL", "Google Maps API"],
     features: ["Ride Booking", "Real-time Tracking", "Automated QA", "Driver Management"],
+  },
+  {
+    name: "MonPD — Monitoring Pajak Daerah",
+    slug: "monpd",
+    tagline: "Enterprise web dashboard for regional tax monitoring & analytics",
+    icon: "📊",
+    color: "cyan",
+    year: "2025",
+    type: "Enterprise Gov",
+    status: "Production",
+    problem: "Kebutuhan untuk merender data tabular pelaporan yang masif dan modul monitoring visual (CCTV Parkir) secara efisien tanpa memblokir thread server, sembari memastikan UI dashboard tetap konsisten dan interaktif bagi user internal pemerintahan.",
+    architecture: "Menerapkan pola arsitektur MVC yang solid dengan ASP.NET Core (.NET 8). Query ke Oracle Database dioptimasi menggunakan LINQ & EF Core untuk mencegah N+1 bottleneck. Async/await diterapkan secara konsisten agar thread server tidak terblokir saat memproses laporan besar.",
+    uiux: "Abstraksi komponen menggunakan DevExtreme UI Components — DataGrid, Chart, dan Scheduler dikonfigurasi sebagai reusable wrapper sehingga konsistensi UI/UX terjaga di seluruh modul sesuai standar design system Bapenda.",
+    impact: "Dashboard monitoring yang robust dan scalable, mempercepat proses pengawasan objek pajak secara real-time. Technical debt frontend diminimalkan berkat standarisasi komponen DevExtreme yang terdokumentasi.",
+    tech: ["ASP.NET Core MVC", ".NET 8", "C#", "EF Core", "LINQ", "DevExtreme", "Oracle DB"],
+    features: ["Real-time Dashboard", "CCTV Integration", "Tax Analytics", "Bulk Reporting"],
+  },
+  {
+    name: "SIAP — Sistem Informasi Aktifitas Pajak",
+    slug: "siap",
+    tagline: "Unified back-office for regional tax activity management",
+    icon: "🗂️",
+    color: "rose",
+    year: "2025",
+    type: "Enterprise Gov",
+    status: "Production",
+    problem: "Kompleksitas business rules pada aktivitas pajak harian dan tingginya risiko ketidakkonsistenan data jika validasi form dan state management tidak ditangani dengan baik pada level aplikasi.",
+    architecture: "Mengadopsi prinsip OOP yang ketat untuk memodelkan entitas aktivitas pajak sebagai domain objects yang kaya (rich domain model). Service layer terpisah untuk setiap bounded context — validasi, rekap, dan pelaporan — memudahkan unit testing dan isolasi perubahan regulasi.",
+    uiux: "Standarisasi komponen UI untuk form input dan tabel data agar reusable di seluruh modul. Pola interaksi yang konsisten mempersingkat kurva belajar pegawai baru dan mengurangi human error dalam entry data.",
+    impact: "Meningkatkan produktivitas dan akurasi data pegawai Bapenda melalui antarmuka yang terstandarisasi. Arsitektur yang scalable siap menampung perubahan regulasi pajak baru tanpa refactor besar.",
+    tech: ["ASP.NET Core MVC", "C#", "EF Core", "Oracle DB", "OOP", "MVC Pattern"],
+    features: ["Activity Tracking", "Data Rekapitulasi", "Regulation-ready", "Back-office Suite"],
   },
 ];
 
@@ -882,7 +929,7 @@ function Projects() {
           </div>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
           {PROJECTS.map((proj, i) => (
             <Reveal key={proj.slug} delay={i * 0.08}>
               <div className="card card-hover" style={{ overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
