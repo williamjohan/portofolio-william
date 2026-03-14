@@ -503,3 +503,194 @@ body {
   .hide-mobile { display: none; }
   .display-xl { letter-spacing: -0.03em; }
 }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE SYSTEM — Mobile First
+══════════════════════════════════════════════ */
+
+/* Responsive grid helpers */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-hero { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center; }
+.grid-about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.grid-contact { display: grid; grid-template-columns: 380px 1fr; gap: 28px; align-items: start; }
+.grid-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 64px; }
+
+/* Floating chips — hide on mobile */
+.hero-float-chips { display: block; }
+
+/* Mobile menu button — hide on desktop */
+.mobile-menu-btn { display: none !important; }
+
+/* Hero right card — controlled via hide-mobile class */
+
+/* ── TABLET (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .grid-hero {
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+  }
+  .grid-about {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-contact {
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+  }
+  .grid-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+}
+
+/* ── TABLET PORTRAIT (≤ 868px) ── */
+@media (max-width: 868px) {
+  :root { --section-y: 80px; }
+
+  .container { padding: 0 24px; }
+
+  /* Nav */
+  .hide-mobile { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+
+  /* Hero */
+  .grid-hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hero-float-chips { display: none; }
+
+  /* Stats */
+  .grid-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  /* About */
+  .grid-about {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Philosophy & Projects */
+  .grid-2 { grid-template-columns: 1fr; gap: 16px; }
+  .grid-3 { grid-template-columns: 1fr; gap: 16px; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Contact */
+  .grid-contact {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ── MOBILE (≤ 640px) ── */
+@media (max-width: 640px) {
+  :root { --section-y: 64px; }
+
+  .container { padding: 0 16px; }
+
+  /* Typography */
+  .display-xl { font-size: 2.5rem; letter-spacing: -0.025em; }
+  .display-lg { font-size: 1.875rem; }
+
+  /* Buttons */
+  .btn { padding: 11px 18px; font-size: 0.825rem; }
+
+  /* Cards */
+  .card { border-radius: 14px; }
+
+  /* Stats */
+  .grid-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  /* Skills always 1 col on small mobile */
+  .skills-grid { grid-template-columns: 1fr !important; }
+
+  /* Form grid */
+  .form-grid-2 { grid-template-columns: 1fr !important; }
+
+  /* Experience card padding */
+  .exp-card { padding: 20px 18px !important; }
+  .proj-card-body { padding: 16px 18px 20px !important; }
+  .proj-card-banner { padding: 20px 18px 0 !important; }
+  .contact-form-card { padding: 24px 20px !important; }
+
+  /* Philosophy cards */
+  .phil-card { padding: 24px 20px !important; }
+
+  /* Section headers */
+  .section-header { margin-bottom: 40px !important; }
+}
+
+/* ── SMALL MOBILE (≤ 400px) ── */
+@media (max-width: 400px) {
+  .container { padding: 0 12px; }
+  .display-xl { font-size: 2.1rem; }
+  .display-lg { font-size: 1.65rem; }
+  .btn { padding: 10px 16px; font-size: 0.8rem; }
+}
+
+/* ── SKILLS GRID BREAKPOINTS ── */
+.skills-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1024px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .skills-grid { grid-template-columns: 1fr; } }
+
+/* ── PROJECTS GRID OVERRIDE ── */
+@media (max-width: 1024px) { .grid-3 { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 640px)  { .grid-3 { grid-template-columns: 1fr !important; } }
+
+/* ── HERO GRID BREAKPOINTS ── */
+@media (max-width: 868px)  { .grid-hero { grid-template-columns: 1fr !important; gap: 0 !important; } }
+
+/* ── STATS GRID ── */
+@media (max-width: 640px)  { .grid-stats { grid-template-columns: repeat(2, 1fr) !important; margin-top: 32px !important; } }
+
+/* ── ABOUT GRID ── */
+@media (max-width: 868px)  { .grid-about { grid-template-columns: 1fr !important; gap: 32px !important; } }
+
+/* ── CONTACT GRID ── */
+@media (max-width: 868px)  { .grid-contact { grid-template-columns: 1fr !important; } }
+
+/* ── FORM GRID ── */
+@media (max-width: 480px)  { .form-grid-2 { grid-template-columns: 1fr !important; } }
+
+/* ── CARD PADDING MOBILE ── */
+@media (max-width: 640px) {
+  .exp-card     { padding: 20px 18px !important; }
+  .phil-card    { padding: 22px 18px !important; }
+  .proj-card-body  { padding: 16px 18px 20px !important; }
+  .contact-form-card { padding: 24px 20px !important; }
+}
+
+/* ── HERO FLOAT CHIPS ── */
+@media (max-width: 1100px) { .hero-float-chips { display: none !important; } }
+
+/* ── MOBILE MENU BUTTON ── */
+@media (max-width: 868px) {
+  .mobile-menu-btn { display: flex !important; }
+}
+
+/* ── TIMELINE RESPONSIVE ── */
+@media (max-width: 640px) {
+  .timeline-node { top: 22px; }
+  .timeline-line { top: 28px; }
+}
+
+/* ── TOUCH TARGETS ── */
+@media (max-width: 640px) {
+  .btn { min-height: 44px; }
+  .nav-link { min-height: 44px; display: flex; align-items: center; }
+  input, textarea, select { font-size: 16px !important; } /* prevent iOS zoom */
+}
+
+/* ── PREVENT OVERFLOW ── */
+* { max-width: 100%; }
+img, video, iframe { max-width: 100%; height: auto; }
+pre, code { overflow-x: auto; }

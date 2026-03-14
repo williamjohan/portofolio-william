@@ -478,7 +478,7 @@ function Hero() {
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 1, width: "100%" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 420px", gap: "80px", alignItems: "center" }}>
+        <div className="grid-hero">
           {/* Left copy */}
           <div>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.6 }}
@@ -506,7 +506,7 @@ function Hero() {
             </motion.div>
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
-              className="body-lg" style={{ maxWidth: "520px", marginBottom: "40px" }}>
+              className="body-lg" style={{ maxWidth: "520px", marginBottom: "40px", width: "100%" }}>
               Mobile Engineer di <strong style={{ color: "var(--fg)", fontWeight: 700 }}>Bapenda Kota Surabaya</strong>,
               mengembangkan aplikasi pemerintahan berbasis{" "}
               <strong style={{ color: "var(--blue-600)", fontWeight: 600 }}>Flutter</strong> dengan pendekatan{" "}
@@ -540,7 +540,7 @@ function Hero() {
 
           {/* Right: profile card */}
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35, duration: 0.7, ease: [0.22,1,0.36,1] }}
-            className="hide-mobile animate-float">
+            className="hide-mobile animate-float" style={{ width: "100%" }}>
             <div style={{ position: "relative" }}>
               {/* Main card */}
               <div className="card" style={{ padding: "32px", textAlign: "center", boxShadow: "var(--shadow-2xl)" }}>
@@ -578,7 +578,8 @@ function Hero() {
                 </div>
               </div>
 
-              {/* Floating badges */}
+              {/* Floating badges - hidden on mobile */}
+              <div className="hero-float-chips">
               {[
                 { label: "Clean Architecture", sub: "Applied in production", x: -110, y: 20,  c: "blue"    },
                 { label: "Design System",      sub: "Scalable & consistent", x: 260,   y: 130, c: "violet"  },
@@ -591,6 +592,7 @@ function Hero() {
                   <div style={{ fontSize: "0.65rem", color: "var(--fg-tertiary)", marginTop: "1px" }}>{chip.sub}</div>
                 </motion.div>
               ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -606,7 +608,7 @@ function About() {
   return (
     <section id="about" className="section-spacing" style={{ background: "var(--bg-subtle)" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }}>
+        <div className="grid-about">
           <Reveal>
             <span className="eyebrow">About Me</span>
             <h2 className="display-lg" style={{ marginBottom: "14px" }}>
@@ -708,10 +710,10 @@ function Philosophy() {
           </div>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}>
+        <div className="grid-2">
           {PHILOSOPHY.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <div className="card card-hover" style={{ padding: "32px 36px", height: "100%" }}>
+              <div className="card card-hover phil-card" style={{ padding: "32px 36px", height: "100%" }}>
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", marginBottom: "20px" }}>
                   <div style={{ width: 44, height: 44, borderRadius: "var(--r-md)", flexShrink: 0,
                     background: C[p.color].bg, border: `1px solid ${C[p.color].border}`,
@@ -755,10 +757,10 @@ function Skills() {
           </div>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        <div className="skills-grid" style={{ display: "grid", gap: "20px" }}>
           {SKILLS_CATS.map((cat, ci) => (
             <Reveal key={cat.label} delay={ci * 0.07}>
-              <div className="card card-hover" style={{ padding: "28px 32px" }}>
+              <div className="card card-hover exp-card" style={{ padding: "28px 32px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px" }}>
                   <div style={{ width: 36, height: 36, borderRadius: "var(--r-md)", background: C[cat.color].bg,
                     border: `1px solid ${C[cat.color].border}`, color: C[cat.color].text,
@@ -825,7 +827,7 @@ function Experience() {
                 <div className="timeline-node" style={{ background: exp.current ? "var(--emerald-500)" : C[exp.color].dot,
                   boxShadow: `0 0 0 3px var(--bg), 0 0 0 5px ${exp.current ? "var(--emerald-500)" : C[exp.color].dot}` }} />
 
-                <div className="card card-hover" style={{ padding: "28px 32px" }}>
+                <div className="card card-hover exp-card" style={{ padding: "28px 32px" }}>
                   {/* Header row */}
                   <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "16px" }}>
                     <div>
@@ -929,7 +931,7 @@ function Projects() {
           </div>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        <div className="grid-3" style={{ display: "grid" }}>
           {PROJECTS.map((proj, i) => (
             <Reveal key={proj.slug} delay={i * 0.08}>
               <div className="card card-hover" style={{ overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
@@ -953,7 +955,7 @@ function Projects() {
                 </div>
 
                 {/* Case study body */}
-                <div style={{ padding: "20px 28px 28px", flex: 1, display: "flex", flexDirection: "column" }}>
+                <div className="proj-card-body" style={{ padding: "20px 28px 28px", flex: 1, display: "flex", flexDirection: "column" }}>
                   {/* Problem → Impact accordion */}
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px", flex: 1 }}>
                     {[
@@ -1028,7 +1030,7 @@ function Awards() {
             <h2 className="heading-xl">Awards & Certificates</h2>
           </div>
         </Reveal>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
+        <div className="grid-2" style={{ gap: "16px" }}>
           {[
             { icon: "🏅", title: "HAKI — Aplikasi APIK Desa Buncitan", issuer: "Kemenkumham RI", date: "Sep 2024",
               desc: "Hak Kekayaan Intelektual Hak Cipta Perangkat Lunak atas karya APIK Buncitan.", color: "amber" },
@@ -1088,7 +1090,7 @@ function Contact() {
           </div>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "380px 1fr", gap: "28px", alignItems: "start" }}>
+        <div className="grid-contact">
           {/* Info */}
           <Reveal>
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -1145,7 +1147,7 @@ function Contact() {
 
           {/* Form */}
           <Reveal delay={0.15}>
-            <div className="card" style={{ padding: "36px 40px" }}>
+            <div className="card contact-form-card" style={{ padding: "36px 40px" }}>
               {status === "sent" ? (
                 <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}
                   style={{ textAlign: "center", padding: "40px 0" }}>
@@ -1159,7 +1161,7 @@ function Contact() {
                   <h3 className="heading-xl" style={{ marginBottom: "6px" }}>Send a Message</h3>
                   <p style={{ fontSize: "0.85rem", color: "var(--fg-tertiary)", marginBottom: "28px" }}>Reply guaranteed within 24 hours ⚡</p>
                   <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                    <div className="form-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                       {[
                         { field: "name", label: "Name *", placeholder: "Your name", type: "text" },
                         { field: "email", label: "Email *", placeholder: "you@email.com", type: "email" },
