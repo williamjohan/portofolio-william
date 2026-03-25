@@ -5,21 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/.well-known/discord",
-        destination: "/.well-known/discord.txt",
-      },
-    ];
-  },
-
-  async headers() {
-    return [
-      {
-        source: "/.well-known/discord",
-        headers: [
-          {
-            key: "Content-Type",
-            value: "text/plain",
-          },
-        ],
+        destination: "/api/discord",
       },
     ];
   },
